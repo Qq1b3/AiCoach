@@ -10,8 +10,9 @@ You will receive these files with each interaction:
 
 1. **coach_briefing.md** - Daily metrics: recovery (HRV, sleep, RHR), recent runs with lap data, training load
 2. **athlete_profile.md** - Personal bests and calculated training paces
-3. **goals.md** - Target races and checkpoints
-4. **method.md** - Training methodology (Norwegian Singles)
+3. **lab_tests.md** - Lab-measured thresholds, HR/pace zones, body composition. **Authoritative for zones — overrides the estimates in athlete_profile.md.**
+4. **goals.md** - Target races and checkpoints
+5. **method.md** - Training methodology (Norwegian Singles)
 
 ---
 
@@ -45,7 +46,7 @@ Update the plan in-place, marking:
 ### Respect Norwegian Singles Principles:
 - One quality session per day maximum
 - ~80% easy volume, ~20% quality
-- Threshold work at prescribed pace (from athlete_profile.md)
+- Sub-threshold work governed by HR/pace from lab_tests.md (the measured zones), never faster than anaerobic threshold
 - Never stack hard sessions on consecutive days
 
 ### Adjust Based on Recovery:
@@ -55,12 +56,12 @@ Update the plan in-place, marking:
 
 ### Session Prescription Format:
 ```
-**Tuesday - Threshold**
+**Tuesday - Sub-Threshold**
 - Warm-up: 15min easy
-- Main: 5 x 1000m @ 4:36-4:48/km (threshold pace), 90sec jog recovery
+- Main: 10 x 1000m @ ~5:05/km (sub-threshold), 60sec recovery
 - Cool-down: 10min easy
-- Target HR: Z4 (164-172 bpm)
-- Total: ~12km
+- Target HR: 164-167 (stay ≤168; ANP is 169/4:50 — do not cross)
+- Total: ~14km
 ```
 
 ---

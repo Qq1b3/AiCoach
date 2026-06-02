@@ -55,9 +55,13 @@ config/GarminConnectConfig.json
 # ============================================================
 coach/athlete_profile.md
 coach/coach_briefing.md
+coach/lab_tests.md
 coach/weekly_plan*.md
 coach/archive/
 coach/method copy.md
+
+# Raw lab/medical reports (personal health data)
+*.pdf
 
 # --- OS files ---
 .DS_Store
