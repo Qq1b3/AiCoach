@@ -1,0 +1,76 @@
+# ============================================================
+# AiCoach .gitignore
+# Goal: NEVER commit personal health data or credentials.
+# ============================================================
+
+# --- Virtual environment ---
+venv/
+.venv/
+env/
+
+# --- Python cache / build ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+*.egg
+
+# --- IDE / editor ---
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ============================================================
+# PERSONAL DATA — never commit
+# ============================================================
+
+# All downloaded Garmin health data (DBs, FIT files, sleep, RHR, weight...)
+/data/
+
+# Generic database / data file safety nets
+*.db
+*.sqlite
+*.sqlite3
+*.fit
+
+# Logs (sync logs + GarminDB log can contain account info)
+/logs/
+*.log
+
+# ============================================================
+# CREDENTIALS — never commit
+# ============================================================
+config/GarminConnectConfig.json
+.garth/
+.GarminDb/
+
+# ============================================================
+# PERSONAL COACH CONTENT — keep templates, ignore generated/personal
+# Tracked (shared): ai_coach_prompt.md, method.md, goals.md
+# ============================================================
+coach/athlete_profile.md
+coach/coach_briefing.md
+coach/weekly_plan*.md
+coach/archive/
+coach/method copy.md
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Local config overrides ---
+*.local.json
+*.local.yaml
+
+# --- Internal dev planning notes (not needed by users of the repo) ---
+stage1implementationplan.md
+stage2implementationplan.md
