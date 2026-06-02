@@ -7,7 +7,7 @@ credentials and data never leave your machine and are never committed.
 
 ## Requirements
 
-- Python ≥ 3.10
+- **Python ≥ 3.12** (required by garmindb 3.8.0 — check with `python --version`)
 - A Garmin Connect account
 
 ## Setup
