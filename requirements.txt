@@ -1,12 +1,15 @@
 # AiCoach Project Requirements
 # Install with:  pip install -r requirements.txt
 
-# Garmin Connect download + SQLite storage (pulls in SQLAlchemy, garth,
-# fitfile, tcxfile, idbutils, tqdm, python-dateutil, etc. as dependencies).
-garmindb==3.6.7
+# Garmin Connect download + SQLite storage. 3.8.0+ uses the curl_cffi-based
+# `garminconnect` backend for login (older versions shipped garth 0.5.19, which
+# Garmin's current login flow rejects with a 401). Pulls in SQLAlchemy, fitfile,
+# tcxfile, idbutils, garminconnect, curl_cffi, tqdm, etc. as dependencies.
+garmindb==3.8.0
 
 # Direct parsing of FIT files for training analysis (used by the coach scripts).
 fitparse>=1.2.0
 
-# Secure credential storage (Garmin password kept in the OS credential manager).
+# Cross-platform secure password storage (Garmin password kept in the OS
+# credential manager; bridged into garmindb by scripts/garmin_auth.py).
 keyring>=25.0.0

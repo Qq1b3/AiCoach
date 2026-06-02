@@ -5,13 +5,13 @@ Run this once to set up your Garmin Connect configuration.
 """
 
 import json
-import os
 import sys
-import shutil
 from pathlib import Path
 from getpass import getpass
 
-import keyring
+# Make sibling modules (garmin_auth) importable regardless of CWD.
+sys.path.insert(0, str(Path(__file__).parent))
+import garmin_auth
 
 
 def get_garmin_db_config_path() -> Path:
@@ -61,15 +61,15 @@ def setup_config():
     config["credentials"]["secure_password"] = True
     config["credentials"]["password"] = ""
 
-    # Store password securely in OS credential store
+    # Store the password in the OS credential store (keyring). garmindb reads it
+    # back through the keyring bridge in garmin_auth.KeyringConfigManager.
     try:
-        keyring.set_password("GarminConnect", email, password)
+        garmin_auth.store_password(email, password)
         print("   Password stored in OS credential manager.")
     except Exception as e:
         print(f"   ERROR: Failed to store password securely: {e}")
-        print("   Falling back to config file storage.")
-        config["credentials"]["secure_password"] = False
-        config["credentials"]["password"] = password
+        print("   Make sure 'keyring' is installed: pip install -r requirements.txt")
+        return
     
     # Get data start date
     print("\nEnter the start date for data download:")
@@ -107,10 +107,26 @@ def setup_config():
     print()
     print("Health data will be stored in:")
     print(f"  {project_data_dir}")
+
+    # Log in once to validate credentials and cache the session token, so future
+    # syncs don't need the password (or another MFA code).
     print()
+    print("Validating credentials and caching login token...")
+    print("(If your account has 2FA enabled, you'll be prompted for a code.)")
+    try:
+        adapter = garmin_auth.login()
+        name = adapter.full_name or adapter.display_name or "(unknown)"
+        print(f"   [OK] Logged in as: {name} - token cached for future syncs.")
+    except Exception as e:
+        print(f"   WARNING: Could not log in yet: {e}")
+        print("   Your settings are saved. Verify credentials, then run:")
+        print("     python scripts/test_connection.py")
+
+    print()
+    print("=" * 60)
     print("Next steps:")
-    print("  1. Run: python scripts/test_connection.py")
-    print("  2. Run: python scripts/run_sync.py --initial")
+    print("  1. python scripts/test_connection.py   (verify / refresh login)")
+    print("  2. python scripts/run_sync.py --initial (first full download)")
     print("=" * 60)
 
 

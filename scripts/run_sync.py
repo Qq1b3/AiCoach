@@ -18,6 +18,9 @@ import logging
 from datetime import datetime, date, timedelta
 from pathlib import Path
 
+# Make sibling modules (garmin_auth) importable regardless of CWD.
+sys.path.insert(0, str(Path(__file__).parent))
+
 # Project paths
 PROJECT_ROOT = Path(__file__).parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
@@ -146,10 +149,11 @@ def fetch_recent_data(days=7):
     
     try:
         from garmindb.download import Download
-        from garmindb.garmin_connect_config_manager import GarminConnectConfigManager
-        
-        gc = GarminConnectConfigManager()
-        dl = Download(gc)
+        from garmin_auth import KeyringConfigManager
+
+        # Keyring-aware config so we can re-login from the credential store if the
+        # cached token has expired (otherwise the token cache is used).
+        dl = Download(KeyringConfigManager())
         dl.login()
         
         # Calculate start date (N days ago)

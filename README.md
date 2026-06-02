@@ -20,10 +20,14 @@ python -m venv venv
 .\venv\Scripts\Activate.ps1            # POSIX: source venv/bin/activate
 pip install -r requirements.txt
 
-python scripts/setup_config.py         # enter your Garmin email/password
-python scripts/test_connection.py      # verify auth (handles 2FA prompt)
+python scripts/setup_config.py         # enter Garmin email/password; logs in once (prompts for 2FA if enabled)
+python scripts/test_connection.py      # verify / refresh the cached login token
 python scripts/run_sync.py --initial   # full history download
 ```
+
+Login uses the `garminconnect` (curl_cffi) backend. After the first login the session
+token is cached in `~/.GarminDb/garmin_tokens.json` and auto-refreshed, so routine syncs
+need neither your password nor another 2FA code.
 
 ## Sync commands
 
@@ -38,12 +42,13 @@ Add `--profile` / `--briefing` to also generate the coach outputs in `coach/`.
 
 ## Where things live
 
-- **Password** → OS credential manager (`keyring`, service `GarminConnect`)
+- **Password** → OS credential manager (`keyring`, service `GarminConnect`), encrypted
+- **Session token** → `~/.GarminDb/garmin_tokens.json`
 - **Email + config** → `~/.GarminDb/GarminConnectConfig.json`
 - **Data + FIT files** → `data/` (git-ignored)
 
-Each user runs `setup_config.py` with their own credentials. The `.gitignore` keeps all
-data and credentials out of the repo.
+Each user runs `setup_config.py` with their own credentials. Nothing credential-related
+lives in the repo — the `.gitignore` keeps all data and credentials out of git.
 
 ## Automated sync (Windows, optional)
 
@@ -54,6 +59,9 @@ python scripts/setup_scheduler.py --create --time 07:00   # --status / --run / -
 
 ## Notes
 
-- `garmindb` is pinned to `3.6.7` (see `requirements.txt`).
-- If auth fails: check credentials, complete 2FA, or sign in once via the Garmin website
-  and retry. Garmin rate-limits repeated logins.
+- `garmindb` is pinned to `3.8.0` (see `requirements.txt`). Older versions shipped
+  `garth 0.5.19`, which Garmin's current login flow rejects with a `401`.
+- If a sync ever fails with an auth error, the cached token likely expired — re-run
+  `python scripts/test_connection.py` to refresh it.
+- If login still fails: check credentials, complete 2FA, or sign in once via the Garmin
+  website and retry. Garmin rate-limits repeated logins.
