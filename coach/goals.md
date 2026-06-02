@@ -38,5 +38,5 @@
 ## NOTES
 
 - Build threshold capacity through Norwegian Singles method.
-- Sub-threshold and race paces are anchored to lab-measured thresholds — see lab_tests.md (ANP 4:50/km @ HR 169). Both targets sit faster than current ANP, so progression of the threshold is the limiter to watch.
+- Sub-threshold and race paces are anchored to lab-measured thresholds, see lab_tests.md (ANP 4:50/km @ HR 169). Both targets sit faster than current ANP, so progression of the threshold is the limiter to watch.
 - Priority: Running (100% focus through October).
