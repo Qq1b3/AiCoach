@@ -136,9 +136,8 @@ The 4–5 day structure scales to the marathon with minimal changes:
 | Shoe | Use | Notes |
 | :--- | :--- | :--- |
 | **ASICS Gel-Nimbus 27** | Easy runs, long runs | Daily trainer. Max cushion. New as of 06/02/2026. |
-| **Hoka Challenger** | Easy runs (previous) | Former daily trainer. Still available as rotation option. |
 | **Adidas Adizero Evo SL** | Sub-threshold intervals | Tempo shoe. Light, responsive. |
-| **Nike Alphafly 3** | Racing only | Carbon plate. Save for race day and key tune-up races. |
+| **Adidas Adizero Adios Pro 4** | Racing, key tune-up races, race-pace sharpening | Carbon-plate super-shoe. Save for race day and the occasional goal-pace session close to a race. |
 
 ---
 
