@@ -1,0 +1,34 @@
+{
+  "_source": "Machine-readable mirror of coach/lab_tests.md (lab-measured, 7 Jan 2026 NSC). lab_tests.md is the human authority; update BOTH together when a new lab test arrives. Scripts read this file so HR/pace numbers live in one place.",
+
+  "hr": {
+    "max": 176,
+    "ap": 157,
+    "anp": 169,
+    "lthr": 169,
+    "zones": {
+      "regeneration": [120, 146],
+      "aerobic": [147, 158],
+      "mixed": [159, 166],
+      "anaerobic": [167, 170],
+      "vo2max": [171, 176]
+    }
+  },
+
+  "_hr_bands_note": "On-watch target ranges per session type. `high` is the cap that triggers the alert. Derived from the lab zones above + method calibration.",
+  "hr_bands": {
+    "easy":    [130, 146],
+    "long":    [130, 150],
+    "wu_cd":   [128, 150],
+    "quality": [164, 167]
+  },
+
+  "_pace_zones_note": "Per-km pace windows (fast/slow as M:SS). Reference for session design; a given week may pick a conservative slice. subthreshold = method-calibrated NSA sweet spot.",
+  "pace_zones": {
+    "easy":         {"fast": "6:26", "slow": "6:57"},
+    "long":         {"fast": "5:55", "slow": "6:26"},
+    "subthreshold": {"fast": "4:55", "slow": "5:15"},
+    "interval":     {"fast": "4:38", "slow": "4:53"},
+    "repetition":   {"fast": "4:13", "slow": "4:31"}
+  }
+}
